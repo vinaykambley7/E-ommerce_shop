@@ -24,9 +24,11 @@ jobs:
       - name: Build app
         working-directory: app
         run: npm run build
+      - name: Copy dist to root
+        run: cp -r app/dist/* .
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./app/dist
+          publish_dir: .
           cname: false
